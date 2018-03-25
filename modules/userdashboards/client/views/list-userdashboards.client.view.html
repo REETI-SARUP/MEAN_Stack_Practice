@@ -1,0 +1,22 @@
+<section>
+  <div class="page-header">
+    <h1>Userdashboards</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="userdashboard in vm.userdashboards"
+       ui-sref="userdashboards.view({ userdashboardId: userdashboard._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="userdashboard.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="userdashboard.user" ng-bind="userdashboard.user.displayName"></span>
+        <span ng-if="!userdashboard.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="userdashboard.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.userdashboards.$resolved && !vm.userdashboards.length">
+    No Userdashboards yet, why don't you <a ui-sref="userdashboards.create">create one</a>?
+  </div>
+</section>
